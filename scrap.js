@@ -4,12 +4,6 @@ const BucketNames = {
     "main": `${process.env.USERPROFILE}\\scoop\\buckets\\main\\bucket`,
     "extras": `${process.env.USERPROFILE}\\scoop\\buckets\\extras\\bucket`
 }
-// const BUCKET_MAIN = `${process.env.USERPROFILE}\\scoop\\buckets\\main\\bucket`
-// const BUCKET_EXTRAS = `${process.env.USERPROFILE}\\scoop\\buckets\\extras\\bucket`
-
-//                      //
-//     FAIRE UN GIT     //
-//                      //
 
 async function read(bucketPath) {
     try {
