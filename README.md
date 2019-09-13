@@ -1,6 +1,6 @@
 # scoop-gui
 
-An electron gui for [scoop](scoop.sh) (windows packet manager)
+An electron gui for [scoop](scoop.sh) (windows package manager)
 
 ## Installation
 

@@ -11,5 +11,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^6.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   }
 }
