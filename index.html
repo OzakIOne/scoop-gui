@@ -5,11 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tab title</title>
+    <title>Scoop-gui</title>
+    <link rel="stylesheet" type="text/css" href="./bin/css/style.min.css">
 </head>
 
 <body>
-    <div id="root"></div>
+    <div class="app-container flex--row">
+        <div class="buckets flex--column">
+            <div class="buckets__installed">
+                <span class="spanTitle">Installed buckets</span>
+                <div id="installedBuckets">
+
+                </div>
+            </div>
+            <div class="buckets__notInstalled">
+                <span class="spanTitle">Available buckets</span>
+                <div id="availableBuckets">
+
+                </div>
+            </div>
+        </div>
+        <div class="content flex--column">
+            <div class="tabs flex--row">
+                <div class="tabs__tab flex--column flex--grow">
+                    <span>Application list</span>
+                    <div class="app-list flex--column" id="list">
+
+                    </div>
+                </div>
+            </div>
+            <div class="appInfo">
+                <span>Installed apps</span>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="./scrap.js"></script>
+<script src="./input.js"></script>
 
 </html>
