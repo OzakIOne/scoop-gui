@@ -2,7 +2,7 @@ import React from 'react';
 
 function InstalledApplications() {
     return (
-        <div class="appInfo">
+        <div className="appInfo">
             <span>Installed apps</span>
         </div>
     )

@@ -2,7 +2,7 @@ import React from 'react';
 
 function AppContainer() {
     return (
-        <div class="tabs flex--row">
+        <div className="tabs flex--row">
 
         </div>
     )
