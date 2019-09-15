@@ -9,16 +9,21 @@
     <link rel="stylesheet" type="text/css" href="./bin/css/style.min.css">
 </head>
 
+<!-- each comment is a react component of the line above it -->
+
 <body>
     <div class="app-container flex--row">
+        <!-- app -->
         <div class="buckets flex--column">
             <div class="buckets__installed">
+                <!-- installed buckets -->
                 <span class="spanTitle">Installed buckets</span>
                 <div id="installedBuckets">
 
                 </div>
             </div>
             <div class="buckets__notInstalled">
+                <!-- available buckets -->
                 <span class="spanTitle">Available buckets</span>
                 <div id="availableBuckets">
 
@@ -27,7 +32,9 @@
         </div>
         <div class="content flex--column">
             <div class="tabs flex--row">
+                <!-- appcontainer -->
                 <div class="tabs__tab flex--column flex--grow">
+                    <!-- application list -->
                     <span>Application list</span>
                     <div class="app-list flex--column" id="list">
 
@@ -35,6 +42,7 @@
                 </div>
             </div>
             <div class="appInfo">
+                <!-- installed applications -->
                 <span>Installed apps</span>
             </div>
         </div>

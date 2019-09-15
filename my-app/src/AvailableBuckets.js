@@ -2,8 +2,8 @@ import React from 'react';
 
 function AvailableBuckets() {
     return (
-        <div class="buckets__notInstalled">
-            <span class="spanTitle">Available buckets</span>
+        <div className="buckets__notInstalled">
+            <span className="spanTitle">Available buckets</span>
             <div id="availableBuckets">
 
             </div>

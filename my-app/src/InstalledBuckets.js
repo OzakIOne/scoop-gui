@@ -2,8 +2,8 @@ import React from 'react';
 
 function InstalledBuckets() {
     return (
-        <div class="buckets__installed">
-            <span class="spanTitle">Installed buckets</span>
+        <div className="buckets__installed">
+            <span className="spanTitle">Installed buckets</span>
             <div id="installedBuckets">
 
             </div>
