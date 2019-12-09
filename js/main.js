@@ -12,7 +12,8 @@ function createWindow() {
         }
     })
 
-    win.loadURL('http://localhost:3000')
+    // and load the index.html of the app.
+    win.loadFile('C:\\Users\\ozaki\\Desktop\\scoop-gui-master\\html\\index.html')
 }
 
 app.on('ready', createWindow)

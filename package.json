@@ -2,7 +2,7 @@
   "name": "scoop-gui",
   "version": "1.0.0",
   "description": "A electron based gui of scoop",
-  "main": "main.js",
+  "main": "./js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/electron ."
