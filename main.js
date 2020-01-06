@@ -13,7 +13,7 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    win.loadFile('C:\\Users\\ozaki\\Desktop\\scoop-gui-master\\html\\index.html')
+    win.loadFile('./html/index.html')
 }
 
 app.on('ready', createWindow)

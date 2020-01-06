@@ -1,0 +1,49 @@
+# Listing
+
+- src/
+  - electron/
+    - package.json
+    - main.js
+  - frontend/
+    - public/
+    - vanilla/
+        - input.js
+    - services/
+      - scrapping/
+        - index.js (scrapping.js)
+    - style/
+      - css/
+        - scss/
+      - (web)fonts/
+    - react/
+  - backend/
+- doc/
+  - preview/
+    - .png
+  - drawio/
+    - electron -> * tabs -> web services / web cheplukoi
+    - end_return.png
+  - nomnoml/
+  - plantuml/
+- script/
+  - des scripts quoi
+- build/
+  - electron/
+    - .gitkeep
+    - scoop-gui.exe
+  - style/
+    - css/
+  - react/
+    - bundle/
+- license
+- readme
+- git
+  - .gitignore
+  - .gitattribut
+- package.json
+- vagrantfile
+- docker/
+  - scoop-gui/
+    - docker/
+      - dockerfile_build
+      - dockerfile_runtime
