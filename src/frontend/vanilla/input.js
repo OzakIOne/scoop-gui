@@ -1,4 +1,4 @@
-const scrap = require('../js/scrap')
+const scrap = require('../services/scrapping/scrap')
 
 scrap.test(BucketNames.extras).then((e) => {
     const listDiv = document.getElementById('list')
