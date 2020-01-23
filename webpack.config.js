@@ -4,7 +4,7 @@ const webpack = require('webpack')
 module.exports = {
     entry: './src/frontend/react/route/index.js',
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './build/react/bundle'),
         filename: 'bundle.js'
     },
     module: {

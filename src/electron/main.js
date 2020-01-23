@@ -13,7 +13,8 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    win.loadFile('./src/frontend/public/index.html')
+    //win.loadFile('../frontend/vanilla/index.html')
+    win.loadFile('../frontend/public/index.html')
 }
 
 app.on('ready', createWindow)

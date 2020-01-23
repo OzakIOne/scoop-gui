@@ -26,7 +26,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "electron": "./node_modules/.bin/electron .",
+    "electron": "./node_modules/.bin/electron ./src/electron/main.js",
     "webpackbuild": "./node_modules/.bin/webpack -config webpack.config.js --mode=production",
     "webpackdev": "./node_modules/.bin/webpack --config webpack.config.js --mode development",
     "react": "react-scripts start",
