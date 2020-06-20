@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Scoop-gui</title>
+        <!-- <link rel="stylesheet" type="text/css" href="../../frontend/style/css/scss/bin/css/style.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="style.min.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="./style/css/scss/bin/css/style.min.css"> -->
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Scoop-gui</title>
-    <link rel="stylesheet" type="text/css" href="../../frontend/style/css/scss/bin/css/style.min.css">
-</head>
+    <!-- each comment is a react component of the line above it -->
 
-<!-- each comment is a react component of the line above it -->
-
-<body>
-    <div class="app-container flex--row">
-        <!-- app -->
-        <div class="buckets flex--column">
-            <div class="buckets__installed">
-                <!-- installed buckets -->
-                <span class="spanTitle">Installed buckets</span>
-                <div id="installedBuckets">
-
+    <body>
+        <div class="app-container flex--row">
+            <!-- app -->
+            <div class="buckets flex--column">
+                <div class="buckets__installed">
+                    <!-- installed buckets -->
+                    <span class="spanTitle">Installed buckets</span>
+                    <div id="installedBuckets"></div>
+                </div>
+                <div class="buckets__notInstalled">
+                    <!-- available buckets -->
+                    <span class="spanTitle">Available buckets</span>
+                    <div id="availableBuckets"></div>
                 </div>
             </div>
-            <div class="buckets__notInstalled">
-                <!-- available buckets -->
-                <span class="spanTitle">Available buckets</span>
-                <div id="availableBuckets">
-
-                </div>
-            </div>
-        </div>
-        <div class="content flex--column">
-            <div class="tabs flex--row">
-                <!-- appcontainer -->
-                <div class="tabs__tab flex--column flex--grow">
-                    <!-- application list -->
-                    <span>Application list</span>
-                    <div class="app-list flex--column" id="list">
-
+            <div class="content flex--column">
+                <div class="tabs flex--row">
+                    <!-- appcontainer -->
+                    <div class="tabs__tab flex--column flex--grow">
+                        <!-- application list -->
+                        <span>Application list</span>
+                        <div class="app-list flex--column" id="list"></div>
                     </div>
                 </div>
-            </div>
-            <div class="appInfo">
-                <!-- installed applications -->
-                <span>Installed apps</span>
+                <div class="appInfo">
+                    <!-- installed applications -->
+                    <span>Installed apps</span>
+                </div>
             </div>
         </div>
-    </div>
-</body>
-<script src="../services/scrapping/scrap.js"></script>
-<script src="./input.js"></script>
-
+    </body>
+    <!-- <script src="../services/scrapping/scrap.js"></script> -->
+    <script src="./scrap.js"></script>
+    <!-- <script src="./services/scrapping/scrap.js"></script> -->
+    <script src="./input.js"></script>
+    <!-- <script src="./vanilla/input.js"></script> -->
 </html>
