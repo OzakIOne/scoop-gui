@@ -28,7 +28,7 @@ scrap.test(BucketNames.extras).then((e) => {
     })
 });
 
-scrap.ParseFiles(installedBuckets).then((e) => {
+scrap.ParseFiles(bucketPath).then((e) => {
     const installedBucketsDiv = document.getElementById('installedBuckets')
     for (let i = 0; i < e.length; i++) {
         const bucketDiv = document.createElement("div")
