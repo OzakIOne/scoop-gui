@@ -1,0 +1,76 @@
+@startuml
+
+title Page Installed/Available Buckets \n Info Application \n
+
+|WebApp|
+
+start
+
+split
+ :Request ListBuckets;
+split again
+ stop
+end split
+
+partition Buckets {
+    |WebService|
+    :Process ListBuckets;
+    |WebApp|
+    :React formatting;
+}
+
+split
+ :Request GetInstalledBuckets;
+split again
+ stop
+end split
+
+partition InsalledBuckets {
+    |WebService|
+    :Process GetInstalledBuckets;
+    |WebApp|
+    :React formatting;
+}
+
+split
+ :Request GetAvailableBuckets;
+split again
+ stop
+end split
+
+partition AvailableBuckets {
+    |WebService|
+    :Process GetAvailableBuckets;
+    |WebApp|
+    :React formatting;
+}
+
+split
+ :Request GetAvailableApps;
+split again
+ stop
+end split
+
+partition AvailableApps {
+    |WebService|
+    :Process GetAvailableApps;
+    |WebApp|
+    :React formatting;
+}
+
+split
+ :Request GetAppinfo;
+split again
+ stop
+end split
+
+partition AppInfo {
+    |WebService|
+    :Process GetAppinfo;
+    |WebApp|
+    :React formatting;
+}
+
+end
+
+@enduml
