@@ -18,5 +18,4 @@ npm run electron
 
 ## How it shoud look
 
-![](./prototype.png)
-https://excalidraw.com/#json=5923173031739392,29ToBg-vwd5SuavmqfhqCw
+![](./doc/excalidraw/prototype.png)

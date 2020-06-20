@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug main process",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "args": [
+                "."
+            ],
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug fastify",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "debug:fastify"
+            ],
+            "port": 5858,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "debug fastify 2",
+            "program": "${workspaceFolder}/src/backend/fastify.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ],
+}

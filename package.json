@@ -1,37 +1,41 @@
 {
-  "name": "scoop-gui",
-  "version": "1.0.0",
-  "description": "A electron based gui of scoop",
-  "main": "main.js",
-  "directories": {
-    "doc": "doc"
-  },
-  "dependencies": {
-    "electron": "^7.1.7",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "sass": "^1.24.2",
-    "webpack-cli": "^3.3.10"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
-    "@babel/preset-react": "^7.8.3",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.4.2",
-    "node-sass": "^4.13.0",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.1.3",
-    "webpack": "^4.41.5"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "electron": "./node_modules/.bin/electron ./src/electron/main.js",
-    "webpackbuild": "./node_modules/.bin/webpack -config webpack.config.js --mode=production",
-    "webpackdev": "./node_modules/.bin/webpack --config webpack.config.js --mode development",
-    "react": "react-scripts start",
-    "reactbuild": "react-scripts build"
-  },
-  "author": "ozaki",
-  "license": "MIT"
+    "name": "scoop-gui",
+    "version": "1.0.0",
+    "description": "A electron based gui of scoop",
+    "main": "./src/electron/main.js",
+    "directories": {
+        "doc": "doc"
+    },
+    "dependencies": {
+        "@babel/plugin-transform-runtime": "^7.9.6",
+        "@babel/runtime": "^7.9.6",
+        "@material-ui/core": "^4.9.14",
+        "@material-ui/icons": "^4.9.1",
+        "electron": "^7.3.1",
+        "fastify": "^2.14.1",
+        "fastify-static": "^2.7.0",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "sass": "^1.24.2",
+        "webpack-cli": "^3.3.10"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.7.7",
+        "@babel/preset-env": "^7.7.7",
+        "@babel/preset-react": "^7.8.3",
+        "css-loader": "^3.4.2",
+        "node-sass": "^4.13.1",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^1.1.3",
+        "webpack": "^4.41.5"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "electron": "./node_modules/.bin/electron ./src/electron/main.js",
+        "webpackbuild": "./node_modules/.bin/webpack -config webpack.config.js --mode=production",
+        "webpackdev": "./node_modules/.bin/webpack --config webpack.config.js --mode development",
+        "debug:fastify": "node --inspect-brk=5858 .\\src\\backend\\fastify.js "
+    },
+    "author": "ozaki",
+    "license": "MIT"
 }
