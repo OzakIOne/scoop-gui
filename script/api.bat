@@ -1,0 +1,1 @@
+curl -X GET localhost:3005/api/scrap/
