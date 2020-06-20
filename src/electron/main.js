@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require("electron");
 
 function createWindow() {
     // create browser's window.
@@ -8,13 +8,14 @@ function createWindow() {
         minWidth: 800,
         minHeight: 600,
         webPreferences: {
-            nodeIntegration: true
-        }
-    })
+            nodeIntegration: true,
+        },
+    });
 
     // and load the index.html of the app.
-    //win.loadFile('../frontend/vanilla/index.html')
-    win.loadFile('../frontend/public/index.html')
+    // win.loadFile('../frontend/vanilla/index.html')
+    // win.loadFile('../frontend/public/public_scss_ui/index.html')
+    win.loadFile("../frontend/public/public_material_ui/index.html");
 }
 
-app.on('ready', createWindow)
+app.on("ready", createWindow);
