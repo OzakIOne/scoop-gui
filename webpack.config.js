@@ -1,23 +1,26 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require("path");
 
 module.exports = {
-    entry: './src/frontend/react/route/index.js',
+    entry: {
+        react_scss_ui: "./src/frontend/react/route/index.js",
+        react_material_ui: "./src/frontend/react/route/index_material_ui.js",
+    },
+
     output: {
-        path: path.resolve(__dirname, './build/react/bundle'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, "./build/react/bundle"),
+        filename: "bundle_[name].js",
     },
     module: {
         rules: [
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    'style-loader',
-                    'css-loader',
+                    "style-loader",
+                    "css-loader",
                     {
-                        loader: 'sass-loader',
+                        loader: "sass-loader",
                         options: {
-                            implementation: require('sass'),
+                            implementation: require("sass"),
                             sassOptions: {
                                 fiber: false,
                             },
@@ -27,12 +30,12 @@ module.exports = {
             },
             {
                 test: /\.(js|jsx)$/,
-                use: 'babel-loader',
-                exclude: '/node_modules/'
-            }
-        ]
+                use: "babel-loader",
+                exclude: "/node_modules/",
+            },
+        ],
     },
     node: {
-        fs: 'empty'
-    }
-}
+        fs: "empty",
+    },
+};
