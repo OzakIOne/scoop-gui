@@ -9,6 +9,7 @@ import {
   getAllAppsName,
   getNotInstalledApps,
 } from '../frontend/services/scrapping/scrap';
+import execa from 'execa';
 
 const server = fastify({
   logger: true,
@@ -46,6 +47,35 @@ server.get('/api/getAllAppsNumber', async (request, reply) => {
 server.get('/api/getNotInstalledApps', async (request, reply) => {
   const apps = await getNotInstalledApps();
   reply.send(apps);
+});
+
+server.get('/api/:action/app', async (req: any, reply) => {
+  const { app } = req.query;
+
+  const actions = [
+    'install',
+    'uninstall',
+    'home',
+    'update',
+    'hold',
+    'unhold',
+    'info',
+  ];
+  const { action } = req.params;
+
+  if (actions.includes(action)) {
+    const exec = await execa(`scoop ${action}`, [app].flat());
+    reply.code(200);
+    reply.send({
+      host: req.hostname,
+      params: action,
+      query: req.query,
+      scoop: exec.stdout,
+    });
+  } else {
+    reply.code(500);
+    reply.send({ sucess: false });
+  }
 });
 
 const start = () => {
