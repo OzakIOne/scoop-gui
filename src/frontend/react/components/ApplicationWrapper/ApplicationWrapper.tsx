@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, IconButton } from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
+import LongMenu from '../LongMenu/LongMenu';
 
 export default function ApplicationWrapper(props: any) {
   return (
@@ -10,6 +11,7 @@ export default function ApplicationWrapper(props: any) {
       </IconButton>
       <h2>{props.appName}</h2>
       <span>Description : {props.description}</span>
+      <LongMenu></LongMenu>
     </Box>
   );
 }

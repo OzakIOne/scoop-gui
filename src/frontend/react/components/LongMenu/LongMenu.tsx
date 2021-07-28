@@ -8,8 +8,8 @@ const options = [
   'Install',
   'Uninstall',
   'Update',
-  'Visit website',
-  'See depedencies',
+  'Home',
+  // 'See depedencies',
   'VirusTotal',
   'Hold',
   'Unhold',
@@ -25,7 +25,15 @@ export default function LongMenu() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event: any) => {
+    const action: string = event.target.textContent.toLocaleLowerCase();
+    if (anchorEl != null) {
+      const app: string =
+        anchorEl.parentNode.parentNode.querySelector('h2').textContent;
+      const url: string = `http://localhost:3005/api/${action}/app?app=${app}`;
+      fetch(url);
+    }
+
     setAnchorEl(null);
   };
 
