@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import { difference, xor } from 'lodash';
+import { readFileSync } from 'fs';
 
 const userDirectory = process.env.USERPROFILE ?? '';
 
@@ -59,6 +60,20 @@ async function getNotInstalledApps() {
   return xor(flatgetAllApps, installedApps);
 }
 
+async function getDescriptionInstalledApps() {
+  const installedApps = await getInstalledApps();
+  return Promise.all(
+    installedApps.map(async (app) => {
+      if (app !== 'scoop') {
+        const data = readFileSync(
+          join(appsPath, app, 'current', 'manifest.json'),
+        );
+        return JSON.parse(data).description;
+      }
+    }),
+  );
+}
+
 // async function sweetPromise(P: any) {
 //   return P.then(
 //     (data: any) => [null, data],
@@ -79,4 +94,5 @@ export {
   getAllAppsName,
   getBucketAppsInfo,
   getNotInstalledApps,
+  getDescriptionInstalledApps,
 };

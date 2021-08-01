@@ -19,6 +19,14 @@ async function apiCall(method: string) {
 }
 
 export default function App() {
+  const [appDescriptionList, setAppDescriptionList] = useState([]);
+  const handleDescriptionInstalledApps = () => {
+    apiCall('getDescriptionInstalledApps').then((data) =>
+      setAppDescriptionList(data),
+    );
+  };
+  useEffect(() => handleDescriptionInstalledApps(), []);
+
   const [appList, setAppList] = useState([]);
   const handleInstalledApps = () => {
     apiCall('getInstalledApps').then((data) => setAppList(data));
@@ -52,6 +60,9 @@ export default function App() {
       apiCall('getInstalledApps').then((data) => {
         setAppList(data);
       });
+      apiCall('getDescriptionInstalledApps').then((data) => {
+        setAppDescriptionList(data);
+      });
     } else if (value === 'all') {
       apiCall('getAllAppsName').then((data) => {
         const cleandata = data
@@ -59,13 +70,29 @@ export default function App() {
           .map((appname: string) => appname.slice(0, -5));
         console.log('cleandata:', cleandata);
         setAppList(cleandata);
+        setAppDescriptionList(cleandata);
       });
     } else if (value === 'notinstalled') {
       apiCall('getNotInstalledApps').then((data) => {
         setAppList(data);
+        setAppDescriptionList(data);
       });
     }
   };
+
+  const [cache, setCache] = useState('');
+  const handleCacheChange = () => {
+    apiCall('cacheShow').then((data) => setCache(data[0].match(/(?=Total).+/)));
+  };
+  useEffect(() => handleCacheChange(), []);
+
+  const [checkup, setCheckup] = useState('');
+  const handleCheckupChange = () => {
+    apiCall('checkup').then((data) =>
+      setCheckup(data[0].match(/(?=WARN  Found).+/)),
+    );
+  };
+  useEffect(() => handleCheckupChange(), []);
 
   interface rowTypes {
     index: any;
@@ -79,7 +106,10 @@ export default function App() {
         justifyContent="space-between"
         key={index}
       >
-        <ApplicationWrapper appName={appList[index]} />
+        <ApplicationWrapper
+          appName={appList[index]}
+          description={appDescriptionList[index]}
+        />
       </Box>
     </div>
   );
@@ -201,9 +231,9 @@ export default function App() {
             </Box>
             <Box display="flex" flexDirection="column" width="50%">
               {/* pass props and set them when user click on an app */}
-              <span>Cache: Total: 48 files, 1.5 GB</span>
-              <span>Checkup: WARN Found 2 potential problems.</span>
-              <span>Status: Scoop is up to date. Everything is ok !</span>
+              <span>Cache: {cache}</span>
+              <span>Checkup: {checkup}</span>
+              <span>Status: Scoop is up to date. Everything is ok !</span>s
             </Box>
           </Box>
         </Box>
