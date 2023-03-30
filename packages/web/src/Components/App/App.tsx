@@ -1,11 +1,11 @@
-import { Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { AppContainer } from '../AppContainer/AppContainer';
 import { BucketWrapper } from '../BucketWrapper/BucketsWrapper';
 
 export const App = (): React.ReactElement => (
-  <Box>
+  <Flex h={'100vh'} direction={'row'} gap="0.5rem">
     <BucketWrapper></BucketWrapper>
     <AppContainer></AppContainer>
-  </Box>
+  </Flex>
 );

@@ -25,5 +25,5 @@ parserOptions:
   ecmaVersion: 2022
   ecmaFeatures:
     jsx: true
-  project: tsconfig.json
+  project: ../../tsconfig.base.json
   sourceType: module
