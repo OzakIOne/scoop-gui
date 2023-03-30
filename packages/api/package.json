@@ -1,0 +1,20 @@
+{
+  "name": "@scoop-gui/api",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts ",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier src/*.ts --write",
+    "format:check": "prettier src/*.ts --check"
+  },
+  "dependencies": {
+    "fastify": "^4.15.0"
+  },
+  "devDependencies": {
+    "tsc-watch": "^6.0.0"
+  }
+}

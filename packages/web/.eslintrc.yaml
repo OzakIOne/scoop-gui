@@ -1,0 +1,29 @@
+extends:
+  - ../../.eslintrc.yaml
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+
+plugins:
+  - react
+
+settings:
+  react:
+    version: "detect"
+
+rules:
+  react/prop-types: "off"
+  react/react-in-jsx-scope: "off"
+
+  "@typescript-eslint/naming-convention": "off"
+  "unicorn/filename-case": "off"
+
+ignorePatterns:
+  - vite.config.ts
+  - "!**/*" # This is required to override the ignorePatterns from the root .eslintrc.yaml
+
+parserOptions:
+  ecmaVersion: 2022
+  ecmaFeatures:
+    jsx: true
+  project: tsconfig.json
+  sourceType: module

@@ -1,0 +1,11 @@
+extends:
+  - ../../.eslintrc.yaml
+
+ignorePatterns:
+  - vite.config.ts
+  - "!**/*" # This is required to override the ignorePatterns from the root .eslintrc.yaml
+
+parserOptions:
+  ecmaVersion: 2022
+  project: tsconfig.json
+  sourceType: module

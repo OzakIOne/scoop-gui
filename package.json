@@ -1,0 +1,33 @@
+{
+  "name": "scoop-gui",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "pnpm --stream -r run start",
+    "dev": "pnpm --stream -r run dev",
+    "build": "pnpm --stream -r run build",
+    "tauribuild": "pnpm --filter web run tbuild",
+    "tauridev": "pnpm --filter web run tdev",
+    "lint": "pnpm --stream -r run lint",
+    "lint:fix": "pnpm --stream -r run lint:fix",
+    "format": "pnpm --stream -r run format",
+    "format:check": "pnpm --stream -r run format:check"
+  },
+  "dependencies": {
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-only-error": "^1.0.2",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-sonarjs": "^0.19.0",
+    "eslint-plugin-unicorn": "^46.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "prettier": "^2.8.7"
+  }
+}
