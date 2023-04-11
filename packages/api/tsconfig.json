@@ -3,6 +3,20 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "outDir": "dist",
+    "strict": false,
+    "strictNullChecks": false,
+    "exactOptionalPropertyTypes": false,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "allowImportingTsExtensions": false,
+    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
+    "declaration": false,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    }
   },
   "exclude": [
     "node_modules",
