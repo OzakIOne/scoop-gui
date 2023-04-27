@@ -2,16 +2,12 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "outDir": "dist",
-    "strict": false,
+    "strict": true,
     "strictNullChecks": false,
     "exactOptionalPropertyTypes": false,
-    "moduleResolution": "node",
-    "baseUrl": ".",
     "allowImportingTsExtensions": false,
     "emitDeclarationOnly": false,
-    "esModuleInterop": true,
-    "declaration": false,
+    "outDir": "dist/",
     "paths": {
       "@/*": [
         "src/*"
@@ -28,6 +24,5 @@
   "include": [
     "src"
   ],
-  "outDir": "dist/",
-  "extends": "../../tsconfig.base.json"
+  "extends": "../../tsconfig.base.json",
 }

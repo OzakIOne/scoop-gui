@@ -4,13 +4,15 @@ extends:
 rules:
   # disable eslintimport/no-default-export
   import/no-default-export: off
+  no-console: off
 
 ignorePatterns:
   - vite.config.ts
+  - dist/*
   - "!**/*" # This is required to override the ignorePatterns from the root .eslintrc.yaml
 
 parserOptions:
   ecmaVersion: 2022
   project: tsconfig.base.json
   sourceType: module
-  tsconfigRootDir: ../../
+  # tsconfigRootDir: ../../
