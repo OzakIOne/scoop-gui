@@ -1,3 +1,4 @@
+# https://github.com/agmmnn/tauri-ui/blob/master/src-tauri/Cargo.toml
 [package]
 name = "scoop-gui"
 version = "0.0.1"
