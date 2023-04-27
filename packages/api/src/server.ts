@@ -1,5 +1,6 @@
 import type { IncomingMessage, Server } from 'node:http';
 
+import cors from '@fastify/cors';
 import { execa } from 'execa';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import fastify from 'fastify';
@@ -7,6 +8,9 @@ import fastify from 'fastify';
 import scrap from './scrap.js';
 
 const server = fastify();
+await server.register(cors, {
+  origin: 'http://localhost:1420',
+});
 const BUCKETS_PATH = `${process.env['USERPROFILE']}\\scoop\\buckets`;
 
 server.get('/bucket/list/installed', async (_, reply) => {

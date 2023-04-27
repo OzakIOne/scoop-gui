@@ -17,6 +17,7 @@
     "fastify": "^4.17.0"
   },
   "devDependencies": {
+    "@fastify/cors": "^8.2.1",
     "@types/lodash": "^4.14.194",
     "lodash": "^4.17.21",
     "tsc-watch": "^6.0.0"
