@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "start": "node dist/server.js",
+    "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
     "build": "tsc",
     "lint": "eslint src/**/*.ts ",
     "lint:fix": "eslint src/**/*.ts --fix",
@@ -12,9 +12,13 @@
     "format:check": "prettier src/*.ts --check"
   },
   "dependencies": {
-    "fastify": "^4.15.0"
+    "@fastify/static": "^6.10.1",
+    "execa": "^7.1.1",
+    "fastify": "^4.17.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.194",
+    "lodash": "^4.17.21",
     "tsc-watch": "^6.0.0"
   }
 }
