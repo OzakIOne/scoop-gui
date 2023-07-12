@@ -4,6 +4,7 @@ import cors from '@fastify/cors';
 import { execa } from 'execa';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import fastify from 'fastify';
+import { BUCKET_NAMES } from './utils.js';
 
 import scrap from './scrap.js';
 
@@ -11,7 +12,6 @@ const server = fastify();
 await server.register(cors, {
   origin: 'http://localhost:1420',
 });
-const BUCKETS_PATH = `${process.env['USERPROFILE']}\\scoop\\buckets`;
 
 server.get('/bucket/list/installed', async (_, reply) => {
   const list = await scrap.getInstalledBuckets();
@@ -49,12 +49,9 @@ server.get(
 );
 
 server.get('/app/list', async (_, reply) => {
-  const list = await scrap.getAllInstalledAppsNames();
-  await reply.code(200).send(list);
-});
-server.get('/feur', async (_, reply) => {
-  const list = await scrap.getInstalledAppNamesArray();
-  await reply.code(200).send(list);
+  const list = await scrap.getAllAvailableApps();
+  const data = await Promise.all(list);
+  await reply.code(200).send(data.flat());
 });
 server.get('/app/list/installed', async (_, reply) => {
   const list = await scrap.getInstalledAppsNames();
@@ -128,25 +125,22 @@ server.get('/scoop/cleanup/all', async (_, reply) => {
 server.get(
   '/scoop/info',
   async (
-    request: FastifyRequest<
-      { Querystring: { appName: string; id: string } },
-      Server,
-      IncomingMessage
-    >,
+    request: FastifyRequest<{ Querystring: { appName: string } }, Server, IncomingMessage>,
     reply: FastifyReply
   ) => {
-    const { appName, id } = request.query;
-    const { stdout } = await execa('es', ['-p', BUCKETS_PATH, '-s', `*${appName}*.json`]);
-    const appArray = stdout.split('\r\n');
-    const maximumId = appArray.length - 1;
-    if (Number.parseInt(id) > maximumId) await reply.code(400).send(`Maximum id is ${maximumId}`);
-    const jsonContent = await scrap.parseJsonFromFile(appArray[id]);
-    await reply.code(200).send(jsonContent);
+    const { appName } = request.query;
+    const allAppsNameArray = await Promise.all(await scrap.getAllAvailableApps());
+    const allAppsName = allAppsNameArray.flat();
+    const app = allAppsName.find(
+      (app) => app.name.toLocaleLowerCase() === appName.toLocaleLowerCase()
+    );
+    const data = await scrap.parseJsonFromFile(`${app.path}\\${app.name}.json`);
+    await reply.code(200).send(data);
   }
 );
 
 server.get('/api/scrap/appsArray', async (_, reply) => {
-  const text = await scrap.appsArray(scrap.bucketNames.extras);
+  const text = await scrap.appsArray(BUCKET_NAMES.extras);
   await reply.send(text);
 });
 

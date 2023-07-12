@@ -1,10 +1,9 @@
 import fs from 'node:fs/promises';
-import path from 'node:path';
+import path, { basename, extname } from 'node:path';
+import { BUCKETS_PATH, SCOOP_PATH, INSTALLED_BUCKET_PATH, AVAILABLE_BUCKET_LIST } from './utils.js';
+import type { Path, AppNamePath } from './utils.js';
 
-import { execa } from 'execa';
 import _ from 'lodash';
-
-type Path = Buffer | string;
 
 interface AppContent {
   version: string;
@@ -20,17 +19,6 @@ interface AppContent {
   bin: string[];
 }
 
-const SCOOP_PATH: Path = process.env['SCOOP'] || `${process.env['USERPROFILE']}\\scoop`;
-const BUCKETS_PATH = `${process.env['USERPROFILE']}\\scoop\\buckets`;
-
-const bucketNames = {
-  main: `${SCOOP_PATH}\\buckets\\main\\bucket`,
-  extras: `${SCOOP_PATH}\\buckets\\extras\\bucket`,
-};
-// const installedAppsPath = `${process.env['USERPROFILE']}\\scoop\\apps`;
-const installedBucketPath: Path = `${SCOOP_PATH}\\buckets`;
-const availableBucketList: Path = `${SCOOP_PATH}\\apps\\scoop\\current\\buckets.json`;
-
 const getDirectoryFiles = async function (directoryPath: Path): Promise<string[]> {
   try {
     return await fs.readdir(directoryPath);
@@ -41,9 +29,9 @@ const getDirectoryFiles = async function (directoryPath: Path): Promise<string[]
 
 const getNotInstalledBuckets = async function (): Promise<string[]> {
   try {
-    return await fs.readFile(availableBucketList, { encoding: 'utf8' }).then(async (item) => {
+    return await fs.readFile(AVAILABLE_BUCKET_LIST, { encoding: 'utf8' }).then(async (item) => {
       const bucketsList = Object.keys(JSON.parse(item) as Record<string, unknown>);
-      return getDirectoryFiles(installedBucketPath).then((instBuckets) => {
+      return getDirectoryFiles(INSTALLED_BUCKET_PATH).then((instBuckets) => {
         const instBucketsArray = Object.keys(instBuckets).map((key) => instBuckets[key]); // extract the array of bucket names from the object
         return _.difference(bucketsList, instBucketsArray);
       });
@@ -55,7 +43,7 @@ const getNotInstalledBuckets = async function (): Promise<string[]> {
 
 const getInstalledBuckets = async function (): Promise<string[]> {
   try {
-    return await getDirectoryFiles(installedBucketPath);
+    return await getDirectoryFiles(INSTALLED_BUCKET_PATH);
   } catch (error: unknown) {
     throw error;
   }
@@ -92,8 +80,12 @@ const parseJsonFiles = async function (
   );
 };
 
-const getInstalledAppsNames = async function (): Promise<string[]> {
-  return getDirectoryFiles('C:\\Users\\ozaki\\scoop\\apps');
+const getInstalledAppsNames = async function (): Promise<AppNamePath[]> {
+  const apps = await getDirectoryFiles(`${SCOOP_PATH}\\apps`);
+  return apps.map((app) => ({
+    name: basename(app, extname(app)),
+    path: `${SCOOP_PATH}\\apps`,
+  }));
 };
 
 const getInstalledAppNamesArray = async function (): Promise<string[][]> {
@@ -101,29 +93,30 @@ const getInstalledAppNamesArray = async function (): Promise<string[][]> {
   return buckets.map((bucket) => bucket.split('\\'));
 };
 
-const getAllInstalledAppsNames = async function (): Promise<string[]> {
-  const { stdout } = await execa('es', ['-p', BUCKETS_PATH, '-s', `*.json`]);
-  const list = stdout.split('\r\n').filter((item) => item.includes('\\bucket\\'));
-  return list.map((item) => {
-    const name = item.split('\\');
-    return name[name.length - 1].split('.')[0];
+const getAllAvailableApps = async function (): Promise<AppNamePath[]> {
+  const buckets = await getInstalledBuckets();
+  const bucketPaths = buckets.map((bucket) => `${BUCKETS_PATH}\\${bucket}\\bucket`);
+  const appNames = bucketPaths.map(async (path) => {
+    const files = await getDirectoryFiles(path);
+    return files.map((file) => ({
+      path: path,
+      name: basename(file, extname(file)),
+    }));
   });
+
+  return Promise.all(appNames).then((result) => result.flat());
 };
 
-const getNotInstalledAppsNames = async function (): Promise<string[]> {
-  const buckets = await getInstalledBuckets();
+const getNotInstalledAppsNames = async function () {
   const installedAppsList = await getInstalledAppsNames();
-  const list = await Promise.all(
-    buckets.map(async (bucket) => {
-      const bucketPath = `${BUCKETS_PATH}\\${bucket}\\bucket`;
-      const { stdout } = await execa('es', ['-p', bucketPath, '-s', `*.json`]);
-      return stdout.split('\r\n').flatMap((item) => {
-        const name = item.split('\\');
-        return name[name.length - 1].split('.')[0];
-      });
-    })
+  const allAvailableApps = await Promise.all(await getAllAvailableApps());
+  const names = allAvailableApps.map((app) => ({ name: app.name, path: app.path }));
+
+  return _.differenceBy(
+    names,
+    installedAppsList.map((app) => ({ name: app.name, path: app.path })),
+    'name'
   );
-  return _.difference(list.flat(), installedAppsList);
 };
 
 const sweetPromise = async function (p: Promise<unknown>): Promise<[Error | null, unknown]> {
@@ -143,14 +136,13 @@ const appsArray = async function (bucketPath: Path): Promise<AppContent[]> {
 
 export default {
   appsArray,
-  bucketNames,
   getDirectoryFiles,
-  getFileContent: getAppContent,
+  getAppContent,
   getNotInstalledBuckets,
   getInstalledBuckets,
   parseJsonFromFile,
   getInstalledAppsNames,
   getNotInstalledAppsNames,
-  getAllInstalledAppsNames,
+  getAllAvailableApps,
   getInstalledAppNamesArray,
 };
