@@ -17,12 +17,16 @@
     "@chakra-ui/react": "^2.6.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@tanstack/react-query": "^4.29.19",
+    "@tanstack/react-query-devtools": "^4.29.19",
     "@tauri-apps/api": "^1.2.0",
     "framer-motion": "^10.12.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@chakra-ui/icons": "^2.0.19",
+    "@tanstack/eslint-plugin-query": "^4.29.9",
     "@tauri-apps/cli": "^1.2.3",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",

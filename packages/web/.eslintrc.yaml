@@ -5,6 +5,7 @@ extends:
 
 plugins:
   - react
+  - "@tanstack/query"
 
 settings:
   react:
