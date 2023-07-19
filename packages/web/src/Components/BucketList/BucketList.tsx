@@ -4,30 +4,27 @@ import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 
 export const BucketList = ({ isInstalled }: { isInstalled: boolean }): React.ReactElement => {
   const queryClient = useQueryClient();
-  const { data, isLoading, isError } = useQuery<string[]>(
-    [isInstalled ? 'installedBuckets' : 'availableBuckets'],
-    async () => {
-      const url = isInstalled
-        ? 'http://localhost:8080/bucket/list/installed'
-        : 'http://localhost:8080/bucket/list/notinstalled';
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Failed to fetch bucket list');
+  const queryKey = isInstalled ? 'installedBuckets' : 'availableBuckets';
+  const baseURL = 'http://localhost:8080/bucket';
+  const { data, isLoading, isError } = useQuery<string[]>([queryKey], async () => {
+    const url = isInstalled ? `${baseURL}/list/installed` : `${baseURL}/list/notinstalled`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Failed to fetch bucket list');
 
-      return response.json();
-    }
-  );
+    return response.json();
+  });
 
   const mutation = useMutation(
     (bucket: string) => {
       const url = isInstalled
-        ? `http://localhost:8080/bucket/remove?appName=${bucket}`
-        : `http://localhost:8080/bucket/add?appName=${bucket}`;
+        ? `${baseURL}/remove?appName=${bucket}`
+        : `${baseURL}/add?appName=${bucket}`;
 
       return fetch(url);
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(isInstalled ? 'installedBuckets' : 'availableBuckets');
+        queryClient.invalidateQueries(queryKey);
       },
     }
   );
