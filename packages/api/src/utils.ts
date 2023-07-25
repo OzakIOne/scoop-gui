@@ -5,7 +5,7 @@ export interface AppNamePath {
 }
 
 export const BUCKETS_PATH = `${process.env['USERPROFILE']}\\scoop\\buckets`;
-export const SCOOP_PATH: Path = process.env['SCOOP'] || `${process.env['USERPROFILE']}\\scoop`;
+export const SCOOP_PATH: Path = process.env['SCOOP'] ?? `${process.env['USERPROFILE']}\\scoop`;
 export const BUCKET_NAMES = {
   main: `${SCOOP_PATH}\\buckets\\main\\bucket`,
   extras: `${SCOOP_PATH}\\buckets\\extras\\bucket`,

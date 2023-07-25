@@ -29,7 +29,7 @@ export const BucketList = ({ isInstalled }: { isInstalled: boolean }): React.Rea
     },
   );
 
-  const modifyBucket = (bucket: string) => {
+  const modifyBucket = (bucket: string): void => {
     mutation.mutate(bucket);
   };
 

@@ -17,15 +17,13 @@ interface AppInfo {
 export const AppInfo = ({ selectedApp }: { selectedApp: App | undefined }): React.ReactElement => {
   const baseURL = 'http://localhost:8080/scoop/info';
   const { data, isLoading, isError } = useQuery<AppInfo>(['appinfo', selectedApp], async () => {
-    const response = await fetch(`${baseURL}?appName=${selectedApp.name}`);
+    const response = await fetch(`${baseURL}?appName=${selectedApp?.name}`);
     if (!response.ok) throw new Error('Failed to fetch bucket list');
 
     return response.json();
   });
   if (isLoading) return <Text>Loading...</Text>;
   if (isError) return <Text>Error occurred while fetching data</Text>;
-
-  console.log(data);
 
   return (
     <Box flex={'1'} border={'1px'}>
