@@ -1,3 +1,5 @@
+$schema: "https://json.schemastore.org/eslintrc"
+
 extends:
   - ../../.eslintrc.yaml
 
@@ -13,6 +15,6 @@ ignorePatterns:
 
 parserOptions:
   ecmaVersion: 2022
-  project: tsconfig.base.json
+  project: ./tsconfig.json
   sourceType: module
   # tsconfigRootDir: ../../

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
     "esModuleInterop": true,
@@ -21,11 +22,11 @@
     "noUnusedParameters": true,
     "paths": {
       "@scoop-gui/api": [
-        "./packages/api/configuration/src/index.ts"
+        "./packages/api/src/server.ts"
       ],
       "@scoop-gui/web": [
-        "./packages/web/src/index.ts"
-      ],
+        "./packages/web/src/main.tsx"
+      ]
     },
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,

@@ -1,28 +1,28 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strict": true,
-    "strictNullChecks": false,
-    "exactOptionalPropertyTypes": false,
     "allowImportingTsExtensions": false,
     "emitDeclarationOnly": false,
+    "emitDecoratorMetadata": true,
+    "exactOptionalPropertyTypes": false,
+    "experimentalDecorators": true,
     "outDir": "dist/",
     "paths": {
       "@/*": [
         "src/*"
-      ],
-    }
+      ]
+    },
+    "strict": true,
+    "strictNullChecks": true
   },
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
     "**/*.test.ts",
-    "node_modules",
-    "dist",
-  ],
-  "include": [
-    "src"
+    "dist"
   ],
   "extends": "../../tsconfig.base.json",
+  "include": [
+    "src"
+  ]
 }
