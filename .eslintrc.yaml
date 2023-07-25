@@ -72,7 +72,6 @@ rules:
   "@typescript-eslint/no-confusing-void-expression": error
   "@typescript-eslint/no-dynamic-delete": error
   "@typescript-eslint/no-floating-promises": error
-  "@typescript-eslint/no-implicit-any-catch": error
   "@typescript-eslint/no-require-imports": error
   "@typescript-eslint/no-unnecessary-boolean-literal-compare": error
   "@typescript-eslint/no-unnecessary-condition": error
@@ -88,7 +87,6 @@ rules:
   "@typescript-eslint/prefer-ts-expect-error": error
   "@typescript-eslint/promise-function-async": error
   "@typescript-eslint/require-array-sort-compare": error
-  "@typescript-eslint/sort-type-union-intersection-members": error
   "@typescript-eslint/strict-boolean-expressions": error
   "@typescript-eslint/switch-exhaustiveness-check": error
   "@typescript-eslint/type-annotation-spacing": error
@@ -149,12 +147,6 @@ rules:
   "@typescript-eslint/no-extraneous-class":
     - error
     - allowWithDecorator: true
-
-  "@typescript-eslint/no-parameter-properties":
-    - error
-    - allows:
-        - private readonly
-        - protected readonly
 
   "@typescript-eslint/lines-between-class-members":
     - error
