@@ -1,8 +1,8 @@
 export type Path = Buffer | string;
-export type AppNamePath = {
+export interface AppNamePath {
   name: string;
   path: Path;
-};
+}
 
 export const BUCKETS_PATH = `${process.env['USERPROFILE']}\\scoop\\buckets`;
 export const SCOOP_PATH: Path = process.env['SCOOP'] || `${process.env['USERPROFILE']}\\scoop`;

@@ -1,9 +1,10 @@
 import fs from 'node:fs/promises';
 import path, { basename, extname } from 'node:path';
-import { BUCKETS_PATH, SCOOP_PATH, INSTALLED_BUCKET_PATH, AVAILABLE_BUCKET_LIST } from './utils.js';
-import type { Path, AppNamePath } from './utils.js';
 
 import _ from 'lodash';
+
+import type { AppNamePath, Path } from './utils.js';
+import { AVAILABLE_BUCKET_LIST, BUCKETS_PATH, INSTALLED_BUCKET_PATH, SCOOP_PATH } from './utils.js';
 
 interface AppContent {
   version: string;
@@ -69,14 +70,14 @@ const parseJsonFromFile = async (filePath: string): Promise<AppContent> => {
 
 const parseJsonFiles = async function (
   fileNames: string[],
-  bucketPath: Path
+  bucketPath: Path,
 ): Promise<AppContent[]> {
   return Promise.all(
     fileNames.map(async (file) =>
       fs
         .readFile(path.join(bucketPath as string, file))
-        .then((buffer) => JSON.parse(buffer.toString()))
-    )
+        .then((buffer) => JSON.parse(buffer.toString())),
+    ),
   );
 };
 
@@ -107,7 +108,7 @@ const getAllAvailableApps = async function (): Promise<AppNamePath[]> {
   return Promise.all(appNames).then((result) => result.flat());
 };
 
-const getNotInstalledAppsNames = async function () {
+const getNotInstalledAppsNames = async function (): Promise<AppNamePath[]> {
   const installedAppsList = await getInstalledAppsNames();
   const allAvailableApps = await Promise.all(await getAllAvailableApps());
   const names = allAvailableApps.map((app) => ({ name: app.name, path: app.path }));
@@ -115,14 +116,14 @@ const getNotInstalledAppsNames = async function () {
   return _.differenceBy(
     names,
     installedAppsList.map((app) => ({ name: app.name, path: app.path })),
-    'name'
+    'name',
   );
 };
 
 const sweetPromise = async function (p: Promise<unknown>): Promise<[Error | null, unknown]> {
   return p.then(
     (data) => [null, data],
-    (error) => [error, null]
+    (error) => [error, null],
   );
 };
 

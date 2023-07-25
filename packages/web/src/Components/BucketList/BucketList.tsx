@@ -1,6 +1,6 @@
-import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
+import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export const BucketList = ({ isInstalled }: { isInstalled: boolean }): React.ReactElement => {
   const queryClient = useQueryClient();
@@ -15,7 +15,7 @@ export const BucketList = ({ isInstalled }: { isInstalled: boolean }): React.Rea
   });
 
   const mutation = useMutation(
-    (bucket: string) => {
+    async (bucket: string) => {
       const url = isInstalled
         ? `${baseURL}/remove?appName=${bucket}`
         : `${baseURL}/add?appName=${bucket}`;
@@ -26,7 +26,7 @@ export const BucketList = ({ isInstalled }: { isInstalled: boolean }): React.Rea
       onSuccess: () => {
         queryClient.invalidateQueries(queryKey);
       },
-    }
+    },
   );
 
   const modifyBucket = (bucket: string) => {
@@ -42,7 +42,7 @@ export const BucketList = ({ isInstalled }: { isInstalled: boolean }): React.Rea
         {isInstalled ? 'Installed buckets' : 'Available buckets'}
       </Text>
       <UnorderedList>
-        {data?.map((bucket) => (
+        {data.map((bucket) => (
           <Box key={bucket}>
             <ListItem
               listStyleType={'none'}
@@ -58,14 +58,18 @@ export const BucketList = ({ isInstalled }: { isInstalled: boolean }): React.Rea
                   cursor={mutation.isLoading ? 'not-allowed' : 'pointer'}
                   opacity={mutation.isLoading ? 0.5 : 1}
                   pointerEvents={mutation.isLoading ? 'none' : 'auto'}
-                  onClick={() => modifyBucket(bucket)}
+                  onClick={() => {
+                    modifyBucket(bucket);
+                  }}
                 />
               ) : (
                 <AddIcon
                   cursor={mutation.isLoading ? 'not-allowed' : 'pointer'}
                   opacity={mutation.isLoading ? 0.5 : 1}
                   pointerEvents={mutation.isLoading ? 'none' : 'auto'}
-                  onClick={() => modifyBucket(bucket)}
+                  onClick={() => {
+                    modifyBucket(bucket);
+                  }}
                 />
               )}
             </ListItem>

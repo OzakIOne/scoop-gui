@@ -1,12 +1,13 @@
 import { Flex } from '@chakra-ui/react';
+import { useState } from 'react';
+
 import { AppInfo } from '../AppInfo/AppInfo';
 import { AppList } from '../AppList/AppList';
 import { AppStatus } from '../AppStatus/AppStatus';
-import { useState } from 'react';
-type App = {
+interface App {
   path: string;
   name: string;
-};
+}
 export const AppContainer = (): React.ReactElement => {
   const [selectedApp, setSelectedApp] = useState<App>();
   return (

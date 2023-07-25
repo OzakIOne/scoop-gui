@@ -1,12 +1,12 @@
-import { Flex, ListItem, UnorderedList, Text } from '@chakra-ui/react';
+import { Flex, ListItem, Text, UnorderedList } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 
 import { AppFilter } from '../AppFilter/AppFilter';
 
-type App = {
+interface App {
   path: string;
   name: string;
-};
+}
 
 export const AppList = ({
   selectedApp,
@@ -31,12 +31,14 @@ export const AppList = ({
     <Flex flex={'1'} border={'1px'} direction="column" minH={'0'}>
       <AppFilter></AppFilter>
       <UnorderedList overflowY={'auto'}>
-        {data?.map((app) => {
+        {data.map((app) => {
           const isSelected = selectedApp === app;
           return (
             <ListItem
               style={{ color: isSelected ? 'red' : 'black' }}
-              onClick={() => setSelectedApp(app)}
+              onClick={() => {
+                setSelectedApp(app);
+              }}
               key={app.path + app.name}
             >
               {app.name}
