@@ -9,8 +9,8 @@
     "tauridev": "pnpm --filter web run tdev",
     "lint": "pnpm --stream -r run lint",
     "lint:fix": "pnpm --stream -r run lint:fix",
-    "format": "pnpm --stream -r run format",
-    "format:check": "pnpm --stream -r run format:check"
+    "format:fix": "pnpm --stream -r run format:fix",
+    "format": "pnpm --stream -r run format"
   },
   "dependencies": {
     "typescript": "^5.0.4"

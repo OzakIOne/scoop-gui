@@ -8,8 +8,8 @@
     "build": "tsc",
     "lint": "eslint src/**/*.ts ",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "format": "prettier src/*.ts --write",
-    "format:check": "prettier src/*.ts --check"
+    "format:fix": "prettier src/*.ts --write",
+    "format": "prettier src/*.ts --check"
   },
   "dependencies": {
     "@fastify/static": "^6.10.1",

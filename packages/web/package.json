@@ -10,8 +10,8 @@
     "tbuild": "tauri build",
     "lint": "eslint src/**/*.tsx ",
     "lint:fix": "eslint src/**/*.tsx  --fix",
-    "format": "prettier src/*.tsx --write",
-    "format:check": "prettier src/*.tsx --check"
+    "format:fix": "prettier src/*.tsx --write",
+    "format": "prettier src/*.tsx --check"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.6.0",
