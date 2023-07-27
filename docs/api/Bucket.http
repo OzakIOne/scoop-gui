@@ -1,0 +1,19 @@
+@hostname = http://localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+
+GET {{host}}/bucket/list/installed HTTP/1.1
+
+###
+
+GET {{host}}/bucket/list/notinstalled HTTP/1.1
+
+###
+
+GET {{host}}/bucket/list/add?appName=php HTTP/1.1
+
+###
+
+GET {{host}}/bucket/list/remove?appName=php HTTP/1.1
+
+###

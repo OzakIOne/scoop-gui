@@ -1,0 +1,15 @@
+@hostname = http://localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+
+GET {{host}}/app/list
+
+###
+
+GET {{host}}/app/list/installed
+
+###
+
+GET {{host}}/app/list/notinstalled
+
+###

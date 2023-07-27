@@ -1,0 +1,32 @@
+@hostname = http://localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+@appExample = everything-cli
+
+GET {{host}}/scoop/install?appName={{appExample}}
+
+###
+
+GET {{host}}/scoop/uninstall?appName={{appExample}}
+
+###
+
+GET {{host}}/scoop/update?appName={{appExample}}
+
+###
+
+GET {{host}}/scoop/update/all
+
+###
+
+GET {{host}}/scoop/cleanup?appName={{appExample}}
+
+###
+
+GET {{host}}/scoop/cleanup/all
+
+###
+
+GET {{host}}/scoop/cache/show
+
+###
