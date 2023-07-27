@@ -120,6 +120,24 @@ const getNotInstalledAppsNames = async function (): Promise<AppNamePath[]> {
   );
 };
 
+const byteValueNumberFormatter = Intl.NumberFormat('en', {
+  notation: 'compact',
+  style: 'unit',
+  unit: 'byte',
+  unitDisplay: 'narrow',
+});
+
+const getScoopCache = async function (): Promise<{ total: number; size: string }> {
+  const scoopPath = `${SCOOP_PATH}\\cache`;
+  const files = await getDirectoryFiles(scoopPath);
+  const folderSize = files.map(async (file) => fs.stat(path.join(scoopPath, file)));
+  const fileSizes = await Promise.all(folderSize);
+  const totalSize = fileSizes.reduce((accumulator, { size }) => accumulator + size, 0);
+  const humanReadableSize = byteValueNumberFormatter.format(totalSize);
+
+  return { total: files.length, size: humanReadableSize };
+};
+
 const sweetPromise = async function (p: Promise<unknown>): Promise<[Error | null, unknown]> {
   return p.then(
     (data) => [null, data],
@@ -146,4 +164,5 @@ export default {
   getNotInstalledAppsNames,
   getAllAvailableApps,
   getInstalledAppNamesArray,
+  getScoopCache,
 };

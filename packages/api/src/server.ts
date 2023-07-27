@@ -139,6 +139,11 @@ server.get(
   },
 );
 
+server.get('/scoop/cache/show', async (_, reply) => {
+  const data = await scrap.getScoopCache();
+  await reply.code(200).send(data);
+});
+
 server.get('/api/scrap/appsArray', async (_, reply) => {
   const text = await scrap.appsArray(BUCKET_NAMES.extras);
   await reply.send(text);
