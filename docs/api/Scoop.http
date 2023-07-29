@@ -30,3 +30,9 @@ GET {{host}}/scoop/cleanup/all
 GET {{host}}/scoop/cache/show
 
 ###
+
+GET {{host}}/scoop/checkup
+
+###
+
+GET {{host}}/scoop/status

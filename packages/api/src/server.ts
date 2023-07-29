@@ -144,6 +144,16 @@ server.get('/scoop/cache/show', async (_, reply) => {
   await reply.code(200).send(data);
 });
 
+server.get('/scoop/checkup', async (_, reply) => {
+  const { stdout } = await execa('scoop', ['checkup']);
+  await reply.code(200).send(stdout);
+});
+
+server.get('/scoop/status', async (_, reply) => {
+  const { stdout } = await execa('scoop', ['status']);
+  await reply.code(200).send(stdout);
+});
+
 server.get('/api/scrap/appsArray', async (_, reply) => {
   const text = await scrap.appsArray(BUCKET_NAMES.extras);
   await reply.send(text);
